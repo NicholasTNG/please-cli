@@ -32,7 +32,8 @@ jobs:
               # Used by PKGBUILD internally 
               set -e
               export TAG="${{ github.ref }}"
-              export VERSION=$(echo "${TAG}" | sed "s/^refs\/tags\/v//")
+              export VERSION="$(echo "${TAG}" | sed "s/^refs\/tags\/v//")"
+              echo "Tag: $TAG, Version: $VERSION"
 
               mkdir -p ~/.ssh
               echo "${{ secrets.AUR_SSH_KEY }}" > ~/.ssh/aur
