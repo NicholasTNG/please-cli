@@ -3,7 +3,7 @@ name: Github Pages
 on:
   push:
     tags:
-      - "v[0-9]+.[0-9]+.[0-9]+"
+      - "disabled-v[0-9]+.[0-9]+.[0-9]+"
 
 jobs:
   create_pages:
@@ -38,8 +38,9 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './html'
+          path: "./html"
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
