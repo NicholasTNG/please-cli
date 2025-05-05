@@ -16,7 +16,7 @@ jobs:
       - name: Update aur PKGBUILD
         run: |
           pacman -Syu --noconfirm
-          pacman -S --noconfirm openssh git
+          pacman -S --noconfirm openssh git base-devel
 
           useradd -m -G wheel runner
           echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
@@ -25,6 +25,7 @@ jobs:
 
           su runner -c '
               # Used by PKGBUILD internally 
+              set -e
               VERSION=${GITHUB_REF#refs/tags/v}
               export VERSION
 
