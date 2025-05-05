@@ -38,6 +38,7 @@ You may then:
 - `-l` or `--legacy` will use the GPT3.5 AI model instead of GPT4 (in case you don't have API access to GPT4)
 - `--debug` will display additional output
 - `-a` or `--api-key` will store your API key in the local keychain
+- `-m` or `--model` will query ChatGPT with the specified model
 - `-v` or `--version` will show the current version
 - `-h` or `--help` will show the help message
 ```
@@ -145,20 +146,38 @@ To store your API key using macOS keychain, run
 security add-generic-password -a "${USER}" -s OPENAI_API_KEY -w "${apiKey}"
 ```
 
+## Configuration
+
+You can use the following OpenAI compatible environment variables:
+* `OPENAI_API_KEY` - Your OpenAI API key
+* `OPENAI_API_BASE` - The base URL for the OpenAI API
+* `OPENAI_API_VERSION` - The version of the OpenAI API
+
+You can use the more specific environment variables if you do not want to change OpenAI settings globally:
+* `PLEASE_OPENAI_API_KEY` - Your OpenAI API key
+* `PLEASE_OPENAI_API_BASE` - The base URL for the OpenAI API
+* `PLEASE_OPENAI_API_VERSION` - The version of the OpenAI API
+* `PLEASE_OPENAI_CHAT_MODEL` - The chat model to use
+
 ## Troubleshooting
 
 If you receive the following error message:
 
 ```bash
 Error: Received HTTP status 404
-The model: gpt-4 does not exist
 ```
 
-The API key you are using is not authorized to use GPT-4. You may also want to use the `--legacy` flag to use GPT-3.5 instead.
-You can also apply for GPT4 API access here: https://openai.com/waitlist/gpt-4-api
+There probably is an issue with your base URL. Please check the OpenAI API base URL in your environment variables.
+
+
+```bash
+Error: Received HTTP status 401
+```
+
+There probably is an issue with your OpenAI API key. Please check the OpenAI API key in your environment variables.
 
 ## License
 
 Please CLI is published under the Apache License 2.0, see http://www.apache.org/licenses/LICENSE-2.0 for details.
 
-Copyright 2023 TNG Technology Consulting GmbH
+Copyright 2025 TNG Technology Consulting GmbH
