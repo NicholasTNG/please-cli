@@ -31,8 +31,8 @@ jobs:
           su runner -c '
               # Used by PKGBUILD internally 
               set -e
-              VERSION=${GITHUB_REF#refs/tags/v}
-              export VERSION
+              export TAG="${{ github.ref }}"
+              export VERSION=$(echo "${TAG}" | sed "s/^refs\/tags\/v//")
 
               mkdir -p ~/.ssh
               echo "${{ secrets.AUR_SSH_KEY }}" > ~/.ssh/aur
