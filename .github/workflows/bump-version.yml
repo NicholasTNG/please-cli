@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'New version number'
+        description: "New version number"
         required: true
 
 jobs:
@@ -14,14 +14,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.APT_REPO_ACCESS_TOKEN }}
 
       - name: Set up Git
         run: |
           git config --local user.email "info@tngtech.com"
           git config --local user.name "TNG Technology Consulting"
-
 
       - name: Check if branch already exists
         run: |
