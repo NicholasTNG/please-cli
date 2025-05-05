@@ -2,6 +2,11 @@ name: Release
 
 on:
   workflow_dispatch:
+    inputs:
+      rel:
+        description: "rel"
+        required: true
+        default: 1
 
 jobs:
   create_arch_package:
@@ -41,6 +46,7 @@ jobs:
 
               cp PKGBUILD aur/
               cd aur/
+              sed -i -e "s/^pkgrel=.*/pkgrel=${{ github.event.inputs.rel }}/" PKGBUILD
               makepkg --printsrcinfo > .SRCINFO
               makepkg
 
